@@ -24,17 +24,17 @@ import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.ResponseHeader;
 
 @RestController
-@Api(tags = {"user management"}) 
-public class UserController {
-	@GetMapping(path = "user/{id}")
-	@ApiResponse(code = 404, message = "ユーザが見つからない")
-	@ApiOperation(value = "ユーザリソースを参照します", notes = "パラメータで指定したIDのユーザリソースを参照します")
-	public User getUser(@PathVariable @ApiParam(name="ユーザID", required=true) String id) throws ResourceNotFoundException {
-		return new User(id, "ichiro");
+@Api(tags = {"group management"}) 
+public class GroupController {
+	@GetMapping(path = "group/{id}")
+	@ApiResponse(code = 404, message = "グループが見つからない")
+	@ApiOperation(value = "グループを参照します", notes = "パラメータで指定したIDのグループリソースを参照します")
+	public User getUser(@PathVariable @ApiParam(name="グループID", required=true) String id) throws ResourceNotFoundException {
+		return new User(id, "group1");
 	}
 
-	@GetMapping(path = "users")
-	public List<User> getUsers() throws ResourceNotFoundException {
+	@GetMapping(path = "groups")
+	public List<User> getGroups() throws ResourceNotFoundException {
 		return new ArrayList<User>() {
 			/**
 			 * 
@@ -42,29 +42,29 @@ public class UserController {
 			private static final long serialVersionUID = -2011028647387655919L;
 
 			{
-				add(new User("001", "ichiro"));
-				add(new User("002", "jiro"));
-				add(new User("003", "saburo"));
+				add(new User("001", "group1"));
+				add(new User("002", "group2"));
+				add(new User("003", "group3"));
 			}
 		};
 	}
 
-	@PostMapping(path = "user")
+	@PostMapping(path = "group")
 	@ResponseStatus(HttpStatus.CREATED)
-	public void createUser(final @Valid @RequestBody User user, final BindingResult bindingResult) {
+	public void createGroup(final @Valid @RequestBody Group group, final BindingResult bindingResult) {
 	}
-
-	@PutMapping(path = "user/{id}")
+	
+	@PutMapping(path = "group/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
 	@ApiResponses(value = {
 	        @ApiResponse(code = 201, message = "New enrolment created sucses", reference = "aaaaa",
 	                responseHeaders = @ResponseHeader(name = "Location", description = "The resulting URI of the newly-created enrolment", response = String.class))})
-	public void updateUser(@PathVariable String id, @Valid @RequestBody User user, final BindingResult bindingResult) {
+	public void updateGroup(@PathVariable String id, @Valid @RequestBody Group group, final BindingResult bindingResult) {
 	}
 
-	@DeleteMapping(path = "user/{id}")
+	@DeleteMapping(path = "group/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void deleteUser(@PathVariable String id) {
+	public void deleteGroup(@PathVariable String id) {
 	}
 
 }

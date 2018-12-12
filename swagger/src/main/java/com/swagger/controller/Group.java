@@ -1,17 +1,18 @@
 package com.swagger.controller;
 
-import io.swagger.annotations.ApiModelProperty;
-import io.swagger.annotations.ApiOperation;
+import java.util.List;
 
-public class User {
+public class Group {
 	
-	public User(String id, String name) {
+	public Group(String id, String name) {
 		this.id=id;
 		this.name=name;
 	}
-	@ApiModelProperty(value = "ÉÜÅ[ÉUID", required=true)
+	
 	private String id;
 	private String name;
+	private List<User> users;
+	
 	public String getId() {
 		return id;
 	}
@@ -23,6 +24,12 @@ public class User {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public List<User> getUsers() {
+		return users;
+	}
+	public void setUsers(List<User> users) {
+		this.users = users;
 	}
 	
 	
